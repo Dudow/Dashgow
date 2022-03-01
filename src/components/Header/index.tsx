@@ -1,4 +1,12 @@
-import { Flex, useBreakpointValue } from "@chakra-ui/react";
+import {
+  Button,
+  Flex,
+  Icon,
+  IconButton,
+  useBreakpointValue,
+} from "@chakra-ui/react";
+import { RiMenuLine } from "react-icons/ri";
+import { useSidebarFloating } from "../../contexts/SidebarFloatingContext";
 import { Logo } from "./Logo";
 import { NotificationsNav } from "./NotificationsNav";
 import { Profile } from "./Profile";
@@ -9,6 +17,8 @@ export function Header() {
     base: false,
     lg: true,
   });
+
+  const { onOpen } = useSidebarFloating();
 
   return (
     <Flex
@@ -21,6 +31,20 @@ export function Header() {
       px={6}
       align="center"
     >
+      {!isLarge && (
+        <IconButton
+          icon={<Icon as={RiMenuLine} />}
+          fontSize="24"
+          variant="unstyled"
+          onClick={onOpen}
+          aria-label="Open navigation"
+          mr={2}
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+        />
+      )}
+
       <Logo />
 
       {isLarge && <SearchBox />}
