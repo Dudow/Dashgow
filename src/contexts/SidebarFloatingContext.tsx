@@ -14,11 +14,11 @@ export function SidebarFloatingProvider({
   children,
 }: SidebarFloatingContextProps) {
   const disclosure = useDisclosure();
-  const router = useRouter();
+  const { asPath } = useRouter();
 
   useEffect(() => {
     disclosure.onClose();
-  }, [router.asPath]);
+  }, [asPath]);
 
   return (
     <SidebarFloatingContext.Provider value={disclosure}>
